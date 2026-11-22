@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>ASCII Garden — Tulips, Freesias &amp; Peonies</title>
+  <meta name="description" content="Real-time animated pastel ASCII bouquet of tulips, freesias, and peonies rendered in 3D with Rust and WebAssembly on a starry black terminal canvas." />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="stage" id="stage">
+    <header class="hud hud-top" aria-label="Artwork details">
+      <div class="placard">
+        <span class="title">TULIPS · FREESIAS · PEONIES</span>
+        <span class="swatches" aria-hidden="true">
+          <i class="swatch swatch-rose"></i>
+          <i class="swatch swatch-lilac"></i>
+          <i class="swatch swatch-butter"></i>
+        </span>
+        <span class="subtitle">ASCII ART · RUST / WASM</span>
+      </div>
+      <div class="telemetry" id="telemetry" aria-live="off">---×--- · -- FPS</div>
+    </header>
+
+    <canvas
+      id="ascii-canvas"
+      role="img"
+      aria-label="Animated colorized ASCII art of a pastel flower bouquet featuring tulips, freesias, and peonies swaying gently against a starry black background."
+    ></canvas>
+
+    <div class="status-overlay" id="status-overlay" hidden role="alert"></div>
+
+    <nav class="hud hud-bottom" aria-label="Animation controls">
+      <label class="wind-control" for="wind-range">
+        <span class="wind-label" id="wind-label">Breeze</span>
+        <input
+          type="range"
+          id="wind-range"
+          min="0"
+          max="2.0"
+          step="0.05"
+          value="1.0"
+          aria-label="Breeze intensity"
+        />
+      </label>
+
+      <span class="sep sep-desktop" aria-hidden="true">·</span>
+
+      <div class="action-row">
+        <button type="button" class="ctrl-btn" id="btn-toggle" aria-pressed="false" title="Pause or resume animation (Space)">
+          Pause
+        </button>
+
+        <span class="sep" aria-hidden="true">·</span>
+
+        <button type="button" class="ctrl-btn" id="btn-bloom" title="Replay the blooming animation">
+          Bloom
+        </button>
+
+        <span class="sep" aria-hidden="true">·</span>
+
+        <button type="button" class="ctrl-btn" id="btn-phosphor" aria-pressed="false" title="Toggle subtle CRT phosphor glow">
+          Phosphor
+        </button>
+
+        <span class="sep" aria-hidden="true">·</span>
+
+        <button type="button" class="ctrl-btn" id="btn-copy" title="Copy current ASCII art frame to clipboard">
+          Copy ASCII
+        </button>
+      </div>
+    </nav>
+  </main>
+
+  <script src="./wasm_fallback.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

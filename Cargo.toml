@@ -1,0 +1,14 @@
+[package]
+name = "bouquet-wasm"
+version = "0.3.0"
+edition = "2021"
+description = "Real-time 3D pastel ASCII flower bouquet engine (Tulips, Freesias & Peonies) in Rust/WebAssembly for GitHub Pages"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
