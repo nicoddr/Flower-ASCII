@@ -117,25 +117,25 @@
     const usableW = Math.max(220, vw - sideMargin);
 
     if (phone) {
-      // On phones, guarantee crisp ~68-78 columns so every peony, tulip & freesia reads cleanly
-      const desiredCols = vw < 360 ? 64 : 74;
-      const maxFontByW = usableW / (desiredCols * 0.62);
-      const maxFontByH = usableH / 56;
-      fontSize = Math.max(7.5, Math.min(11.5, Math.floor(Math.min(maxFontByW, maxFontByH) * 2) / 2));
+      // On phones, render a fine ~86-92 column ASCII grid so every peony ruffle, sepal & gypsophila shines
+      const desiredCols = vw < 360 ? 78 : 88;
+      const maxFontByW = usableW / (desiredCols * 0.61);
+      const maxFontByH = usableH / 76;
+      fontSize = Math.max(6.5, Math.min(10.0, Math.floor(Math.min(maxFontByW, maxFontByH) * 2) / 2));
     } else {
-      const targetRows = vw < 1024 ? 54 : 60;
-      fontSize = Math.max(10, Math.min(18, Math.floor(usableH / targetRows)));
+      const targetRows = vw < 1024 ? 66 : 76;
+      fontSize = Math.max(8.5, Math.min(15.5, Math.floor((usableH / targetRows) * 2) / 2));
     }
 
     ctx.font = `600 ${fontSize}px ${FONT_FAMILY}`;
     const measuredW = ctx.measureText('@').width;
 
-    // Align cell pitch cleanly to physical pixels for sharp monospace rendering on Retina phones
-    cellW = Math.max(4.5, Math.round(measuredW * 1.05 * dpr) / dpr);
-    cellH = Math.max(8, Math.round(fontSize * 1.13 * dpr) / dpr);
+    // Align cell pitch cleanly to physical pixels for sharp monospace rendering on Retina displays
+    cellW = Math.max(4.0, Math.round(measuredW * 1.04 * dpr) / dpr);
+    cellH = Math.max(7.0, Math.round(fontSize * 1.12 * dpr) / dpr);
 
-    rows = Math.max(28, Math.min(115, Math.floor(usableH / cellH)));
-    cols = Math.max(48, Math.min(200, Math.floor(usableW / cellW)));
+    rows = Math.max(32, Math.min(165, Math.floor(usableH / cellH)));
+    cols = Math.max(48, Math.min(265, Math.floor(usableW / cellW)));
 
     originX = Math.floor((vw - cols * cellW) * 0.5);
     originY = Math.floor(topReserve + (usableH - rows * cellH) * 0.5);
